@@ -1,7 +1,7 @@
 node {
 	def app
 	stage('Clone repository') {
-		git 'https://github.com/GiYeons/IntroduceGame-fork.git'
+		git branch: 'develop', url: 'https://github.com/GiYeons/IntroduceGame-fork.git'
 	}
 	stage('Build image') {
 		app = docker.build("giyeonss/introduce-game")

@@ -1,2 +1,2 @@
 # IntroduceGame
-introduce game
+introduce game!

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: intro-game
+    labels:
+      app: intro-game
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: intro-game
+  template:
+    metadata:
+      labels:
+        app: intro-game
+        tier: intro-game
+    spec:
+      containers:
+      - name: intro-game
+        image: giyeonss/introduce-game:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: intro-game
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: intro-game
+  labels:
+    app: intro-game
+spec:
+  ports:
+  - port: 3000
+    targetPort: 5000
+  selector:
+    app: intro-game
+    tier: intro-game
+  type: LoadBalancer
